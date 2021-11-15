@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: bitnami
-  namespace: york-test
+  namespace: york-test-nginx-m9v9h
 spec:
   url: https://charts.bitnami.com/bitnami
   interval: 10m
@@ -20,7 +20,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-        namespace: york-test
+        namespace: york-test-nginx-m9v9h
       version: 9.5.13
   interval: 15s
   install:
