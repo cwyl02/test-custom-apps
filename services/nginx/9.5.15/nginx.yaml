@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx
+  namespace: ${releaseNamespace}
+spec:
+  chart:
+    spec:
+      chart: nginx
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: ${releaseNamespace}
+      version: 9.5.15
+  interval: 15s
+  install:
+    remediation:
+      retries: 30
+    createNamespace: true
+  upgrade:
+    remediation:
+      retries: 30
+  releaseName: nginx
+  valuesFrom:
+    - kind: ConfigMap
+      name: nginx-9.5.15-d2iq-defaults
+  targetNamespace: ${releaseNamespace}
